@@ -73,6 +73,8 @@ When multiple sources define the same header, the first one wins:
 2. **CF Access credentials** — `CF-Access-Client-Id` / `CF-Access-Client-Secret` (if enabled and host matches).
 3. **Custom rules** — applied in order. Later rules with the same name overwrite earlier ones, but never overwrite caller or CF Access headers.
 
+Header names are matched case-insensitively according to HTTP semantics. A caller-supplied `X-Custom` header prevents injection of `x-custom`, `X-CUSTOM`, or any other casing variant.
+
 ### Use cases
 
 | Use case | Example header |
