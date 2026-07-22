@@ -34,8 +34,13 @@ local function has_header(headers, name)
     if type(headers) ~= "table" then
         return false
     end
-    return headers[name] ~= nil
-        or headers[name:lower()] ~= nil
+    local name_lower = name:lower()
+    for k, _ in pairs(headers) do
+        if type(k) == "string" and k:lower() == name_lower then
+            return true
+        end
+    end
+    return false
 end
 
 --- Inject CF Access headers into a table-form request if needed.
