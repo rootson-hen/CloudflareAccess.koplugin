@@ -485,19 +485,65 @@ describe("hooks custom headers integration", function()
                 url = "https://example.com/path",
                 headers = { ["X-Custom"] = "caller" },
             })
-            -- Caller's mixed-case key is preserved (Lua treats different cases
-            -- as distinct keys; has_header only checks exact + lowercased).
+            -- Caller's mixed-case key is preserved untouched
             assert.equals("caller", captured_requests[1].headers["X-Custom"])
-            -- The rule did inject under its own lowercased key since
-            -- has_header did not detect the mixed-case caller key.
-            assert.equals("injected", captured_requests[1].headers["x-custom"])
+            -- No duplicate injected under any casing variant
+            assert.is_nil(captured_requests[1].headers["x-custom"],
+                "Rule injected duplicate header under lowercased key")
+            assert.is_nil(captured_requests[1].headers["X-CUSTOM"],
+                "Rule injected duplicate header under uppercased key")
 
-            -- The rule name "x-custom" did NOT match caller's "X-Custom" key
-            -- in has_header, so no suppression log is emitted.
+            local found = false
             for _, entry in ipairs(log.getEntries()) do
-                assert.is_nil(entry.message:find("suppressed rule"),
-                    "Unexpected suppressed rule log: " .. entry.message)
+                if entry.message:find("suppressed rule") then
+                    found = true
+                end
             end
+            assert.is_true(found, "suppressed rule log line not emitted")
+        end)
+
+        it("respects caller UPPERCASE header when rule is lowercased", function()
+            hooks.install(function()
+                return {
+                    enabled = false,
+                    client_id = "",
+                    client_secret = "",
+                    domains = {},
+                    custom_headers = {
+                        make_rule({ name = "x-custom", value = "injected", domains = {} }),
+                    },
+                }
+            end)
+
+            mock_http.request({
+                url = "https://example.com/path",
+                headers = { ["X-CUSTOM"] = "caller" },
+            })
+            assert.equals("caller", captured_requests[1].headers["X-CUSTOM"])
+            assert.is_nil(captured_requests[1].headers["x-custom"],
+                "Rule injected duplicate under lowercased key")
+            assert.is_nil(captured_requests[1].headers["X-Custom"],
+                "Rule injected duplicate under mixed-case key")
+        end)
+
+        it("injects normally when no caller header exists", function()
+            hooks.install(function()
+                return {
+                    enabled = false,
+                    client_id = "",
+                    client_secret = "",
+                    domains = {},
+                    custom_headers = {
+                        make_rule({ name = "X-Custom", value = "injected", domains = {} }),
+                    },
+                }
+            end)
+
+            mock_http.request({
+                url = "https://example.com/path",
+                headers = {},
+            })
+            assert.equals("injected", captured_requests[1].headers["X-Custom"])
         end)
     end)
 
