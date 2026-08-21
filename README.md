@@ -1,4 +1,4 @@
-[![CI](https://github.com/WojtekHenszke/CloudflareAccess.koplugin/actions/workflows/ci.yml/badge.svg)](https://github.com/WojtekHenszke/CloudflareAccess.koplugin/actions/workflows/ci.yml)
+[![CI](https://github.com/rootson-hen/CloudflareAccess.koplugin/actions/workflows/ci.yml/badge.svg)](https://github.com/rootson-hen/CloudflareAccess.koplugin/actions/workflows/ci.yml)
 
 # Cloudflare Access
 
