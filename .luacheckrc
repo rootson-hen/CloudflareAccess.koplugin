@@ -25,6 +25,8 @@ globals = {
 -- Exclude the KOReader submodule and any vendored libraries
 exclude_files = {
     "koreader/",
+    ".lua/",
+    ".luarocks/",
 }
 
 -- Allow underscore-prefixed throwaway locals

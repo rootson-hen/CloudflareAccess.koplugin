@@ -12,7 +12,7 @@ This repository includes the KOReader source as a **git submodule** (under
 ### Clone with submodules
 
 ```sh
-git clone --recurse-submodules https://github.com/WojtekHenszke/CloudflareAccess.koplugin.git
+git clone --recurse-submodules https://github.com/rootson-hen/CloudflareAccess.koplugin.git
 ```
 
 If you already cloned without `--recurse-submodules`, initialise the submodule
@@ -93,3 +93,8 @@ cd koreader && ./kodev build && ./kodev run
 [`kopl`](https://github.com/consoleaf/kopl) is a community Go-based tool that
 can scaffold koplugins and run static checks. It is **not** required — the
 `luacheck` + `busted` setup above is sufficient — but some may find it useful.
+
+## Maintenance and operating model
+
+- **Repository Owner:** [`rootson-hen`](https://github.com/rootson-hen) retains ownership, release signing authority, and final project governance.
+- **Development & Maintenance Agent:** [`alfred-rootson`](https://github.com/alfred-rootson) performs routine implementation, dependency checks, automated testing, and maintenance pull requests.

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- GitHub repository owner: personal account renamed from `WojtekHenszke` to `rootson-hen`. Canonical repository URL is now `https://github.com/rootson-hen/CloudflareAccess.koplugin`. Existing Git history is preserved unchanged.
+- Operational development and maintenance identity: `alfred-rootson` agent account. Future automation commits, pull requests, and issue triage use the Alfred identity. Repository ownership remains with `rootson-hen`.
+
+## [0.3.1] - 2026-07-22
+
+### Fixed
+
+- Proper case-insensitive HTTP header collision detection. Caller-supplied headers now suppress custom rule injection regardless of capitalization.
+
 ## [0.3.0] - 2026-07-21
 
 ### Fixed
@@ -137,7 +147,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT license, README, CONTRIBUTING guide, architecture docs, and
   SECURITY.md with threat model.
 
-[Unreleased]: https://github.com/WojtekHenszke/CloudflareAccess.koplugin/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/WojtekHenszke/CloudflareAccess.koplugin/releases/tag/v0.3.0
-[0.2.0]: https://github.com/WojtekHenszke/CloudflareAccess.koplugin/compare/v0.2.0...v0.3.0
-[0.1.0]: https://github.com/WojtekHenszke/CloudflareAccess.koplugin/releases/tag/v0.1.0
+[Unreleased]: https://github.com/rootson-hen/CloudflareAccess.koplugin/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/rootson-hen/CloudflareAccess.koplugin/releases/tag/v0.3.1
+[0.3.0]: https://github.com/rootson-hen/CloudflareAccess.koplugin/compare/v0.3.0...v0.3.1
+[0.2.0]: https://github.com/rootson-hen/CloudflareAccess.koplugin/compare/v0.2.0...v0.3.0
+[0.1.0]: https://github.com/rootson-hen/CloudflareAccess.koplugin/releases/tag/v0.1.0
